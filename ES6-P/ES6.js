@@ -92,5 +92,76 @@ function getUsers() {
   
   console.log(findUser('jane'));
 
+console.log("-------------------------------------")
+function callback(a, b){
+  return a + b;
+}
 
-  
+function findSum(fn){
+  let x = 20;
+  let y = 50;
+  console.log(fn(x, y));
+}
+findSum(callback);
+
+console.log("Start");
+setTimeout(()=>{
+console.log("after 2 seconds")
+}, 2000)
+setTimeout(()=>{
+  console.log("End")
+  })
+
+console.log("-------------------------------------")
+/* const myPromise = new Promise((resolve, reject)=>{
+  if(false){
+    resolve("Data is feteched!")
+  }else{
+    reject("Try again, data is failed")
+  }
+})
+myPromise.then((result)=>console.log(result)); */
+function fetchData(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = "Some data fetched from an API";
+      //simulate error condition
+      const error  = false;
+      if(!error){
+        resolve(data);
+      }
+      else{
+        reject("Error: Unable to fetch data");
+      }
+    }, 5000);
+  });
+}
+
+fetchData()
+  .then(data => {
+    console.log("Data: ",data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+console.log("-------------------------------------")
+
+/* function myDisplayer(some){
+  document.getElementById("demo").innerHTML = some;
+}
+
+let myPromise = new Promise(function(myResolve, myReject){
+  let x = 0;
+
+  if(x ==0){
+    myResolve("OK")
+  }
+  else{
+    myReject("Error")
+  }
+});
+
+myPromise.then(
+  function(value) {myDisplayer(value);},
+  function(error) {myDisplayer(error);}
+); */
